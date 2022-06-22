@@ -1,0 +1,30 @@
+name: GitHub Actions Demo
+
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "🍏 This job's status is ${{ job.status }}."
+
+      - name: Installing firebase cli
+        run: |
+          npm install firebase-tools --location=global
+
+      - name: Installing packages
+        run: |
+          npm i
+      
+      - name: Creating the build
+        run: |
+          npm run build
+        
+      - name: Deploy to Firebase
+        run: |
+          firebase deploy --token 1//0cxI5aK25anwaCgYIARAAGAwSNwF-L9Irei6_fw0LSazmBdFYOeUYinA4iOHHshSdaCRNcMrI91FOR-DKytUoCRigDpoV0v782Tk --project test-voting-19bb6
